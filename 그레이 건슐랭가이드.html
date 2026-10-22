@@ -1,0 +1,372 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>그레이 건슐랭가이드</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: 가이드북 한 권 — 상단 표지 띠, 분류 탭과 정렬 도구, 분류별 순위표, 맨 아래 산정 방식 */
+:root{
+  --paper:#eef0f3; --sheet:#ffffff; --ink:#18202b; --muted:#5b6574; --line:#d6dbe2;
+  --cobalt:#2643c9; --cobalt-soft:#e3e8fb; --gold:#c98a0b; --gold-soft:#fbf1da;
+  --kakao:#8a6d00; --google:#1f6f43; --dc:#a3322a;
+  --f-display:"Black Han Sans","IBM Plex Sans KR",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11151b; --sheet:#181d25; --ink:#e7ebf1; --muted:#97a1b0; --line:#2a313c;
+  --cobalt:#8ea2ff; --cobalt-soft:#1f2747; --gold:#f0b43c; --gold-soft:#33280f;
+  --kakao:#e3c34a; --google:#6fd09a; --dc:#ff8f86; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11151b; --sheet:#181d25; --ink:#e7ebf1; --muted:#97a1b0; --line:#2a313c;
+  --cobalt:#8ea2ff; --cobalt-soft:#1f2747; --gold:#f0b43c; --gold-soft:#33280f;
+  --kakao:#e3c34a; --google:#6fd09a; --dc:#ff8f86; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:980px;margin:0 auto}
+header{padding-block:36px 20px;display:grid;gap:14px;border-bottom:3px solid var(--ink)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,7vw,58px);line-height:1.05;margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 .tire{color:var(--cobalt)}
+.lede{margin:0;max-width:62ch;color:var(--muted)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.legend button{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:var(--sheet);color:var(--ink);cursor:pointer}
+.legend button b.g{color:var(--gold)} .legend button b.c{color:var(--cobalt)}
+.legend button[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);background:var(--gold-soft)}
+.legend button:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+.legend .hint{font-size:12.5px;color:var(--muted);align-self:center}
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);padding-block:12px;display:grid;gap:10px;border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.tabs button{flex:none;font:inherit;font-size:14px;font-weight:600;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tabs button:focus-visible,.row a:focus-visible,select:focus-visible,input:focus-visible,label:focus-within{outline:2px solid var(--cobalt);outline-offset:2px}
+.subs{display:flex;gap:6px;flex-wrap:wrap}
+.subs button{font:inherit;font-size:13px;font-weight:500;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.subs button[aria-pressed="true"]{background:var(--cobalt);border-color:var(--cobalt);color:var(--sheet)}
+.subs button:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px}
+.ctrl input[type=search]{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:8px;background:var(--sheet);color:var(--ink);min-width:0;flex:1 1 180px}
+.ctrl select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--sheet);color:var(--ink)}
+.ctrl label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.count{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);margin-left:auto}
+section.cat{margin-top:30px}
+.cat-h{display:flex;align-items:baseline;gap:12px;border-bottom:1px solid var(--ink);padding-bottom:6px}
+.cat-h h2{font-family:var(--f-display);font-weight:400;font-size:28px;margin:0}
+.cat-h .n{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+ol.list{list-style:none;margin:0;padding:0}
+.row{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.rank{font-family:var(--f-mono);font-size:13px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.main{min-width:0;display:grid;gap:5px}
+.name{font-weight:700;font-size:16.5px;display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center}
+.name .sub{font-weight:500;font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:0 6px}
+.badge{font-size:12px;font-weight:700;border-radius:6px;padding:1px 7px;white-space:nowrap}
+.badge.star{background:var(--gold-soft);color:var(--gold)}
+.badge.bib{background:var(--cobalt-soft);color:var(--cobalt)}
+.badge.warn{border:1px dashed var(--muted);color:var(--muted);font-weight:500}
+.src{display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--f-mono);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.src i{font-style:normal;font-weight:600}
+.src .k i{color:var(--kakao)} .src .g i{color:var(--google)} .src .d i{color:var(--dc)}
+.src .na{opacity:.55}
+.addr{font-size:13px;color:var(--muted)}
+.links{display:flex;gap:10px;font-size:12.5px}
+.links a{color:var(--cobalt);text-decoration:none;border-bottom:1px solid transparent}
+.links a:hover{border-bottom-color:currentColor}
+.side{text-align:right;display:grid;gap:4px;justify-items:end;min-width:92px}
+.score{font-family:var(--f-mono);font-weight:600;font-size:24px;line-height:1;font-variant-numeric:tabular-nums}
+.score.none{font-size:13px;color:var(--muted);font-weight:500}
+.stars5{position:relative;font-size:13px;letter-spacing:1px;color:var(--line);line-height:1}
+.stars5 span{position:absolute;inset:0 auto 0 0;overflow:hidden;color:var(--gold);white-space:nowrap}
+.dist{font-family:var(--f-mono);font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums}
+.dist small{color:var(--muted)}
+.empty{padding:24px 0;color:var(--muted)}
+.wheel-btn{font:inherit;font-size:14px;font-weight:700;padding:6px 14px;border-radius:8px;border:1px solid var(--cobalt);background:var(--cobalt);color:var(--sheet);cursor:pointer}
+.wheel-btn[aria-expanded="true"]{background:transparent;color:var(--cobalt)}
+.wheel-btn:focus-visible,.spin:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+.wheel{margin-top:18px;padding:18px;background:var(--sheet);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:18px;align-items:center}
+.wheel-stage{position:relative;width:100%;max-width:460px;aspect-ratio:1;justify-self:center}
+.wheel-stage canvas{width:100%;height:100%;display:block}
+.wheel-stage .pin{position:absolute;right:-6px;top:50%;width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-right:24px solid var(--ink);transform:translateY(-50%);filter:drop-shadow(0 1px 1px rgba(0,0,0,.25))}
+.wheel-side{display:grid;gap:12px;min-width:0}
+.wheel-side .pool{font-size:13px;color:var(--muted)}
+.wcats{display:flex;flex-wrap:wrap;gap:6px}
+.wcats label{display:inline-flex;align-items:center;gap:5px;font-size:13px;padding:4px 9px;border:1px solid var(--line);border-radius:999px;cursor:pointer;user-select:none}
+.wcats label:has(input:checked){border-color:var(--ink);background:var(--cobalt-soft)}
+.wcats label.all{font-weight:700}
+.wcats input{accent-color:var(--cobalt);margin:0}
+.spin{font-family:var(--f-display);font-size:24px;padding:12px 18px;border-radius:12px;border:0;background:var(--ink);color:var(--paper);cursor:pointer}
+.spin:disabled{opacity:.5;cursor:default}
+.pick{min-height:120px;padding:14px;border:1px dashed var(--line);border-radius:12px;display:grid;gap:6px;align-content:start}
+.pick .pn{font-weight:700;font-size:20px;text-wrap:balance}
+.pick .pm{font-size:13px;color:var(--muted)}
+.pick .ps{font-family:var(--f-mono);font-size:14px}
+.pick.idle{color:var(--muted);font-size:14px;align-content:center;text-align:center}
+@media (max-width:640px){.wheel{grid-template-columns:minmax(0,1fr)}}
+.method{margin-top:44px;padding:22px;background:var(--sheet);border:1px solid var(--line);border-radius:12px;display:grid;gap:10px}
+.method h2{font-family:var(--f-display);font-weight:400;font-size:24px;margin:0}
+.method p,.method li{margin:0;max-width:70ch;font-size:14px}
+.method ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.method .note{color:var(--muted);font-size:13px}
+@media (max-width:560px){
+  .row{grid-template-columns:30px minmax(0,1fr) auto;gap:4px 10px}
+  .side{min-width:70px}
+  .score{font-size:20px}
+}
+@media (prefers-reduced-motion:no-preference){.row{transition:background .15s}.row:hover{background:color-mix(in srgb,var(--sheet) 70%,transparent)}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">2026 가을판 · 페이코 가맹점 편</div>
+  <h1>그레이 건슐랭가이드</h1>
+  <p class="lede">미림타워에서 걸어갈 수 있는 페이코 식권 가맹점을 카카오맵, 구글 지도, 다이닝코드 평점으로 다시 매겼습니다. 플랫폼마다 별점 후한 정도가 달라서 각자의 평균에 맞춰 보정한 뒤 하나의 점수로 합쳤어요.</p>
+  <div class="facts" id="facts"></div>
+  <div class="legend" id="awards" role="toolbar" aria-label="건슐랭 스타 등급으로 보기">
+    <button type="button" data-a="3" aria-pressed="false"><b class="g">★★★</b> 건슐랭 3스타 · 상위 8%</button>
+    <button type="button" data-a="2" aria-pressed="false"><b class="g">★★</b> 건슐랭 2스타 · 상위 23%</button>
+    <button type="button" data-a="1" aria-pressed="false"><b class="g">★</b> 건슐랭 1스타 · 상위 45%</button>
+    <button type="button" data-a="bib" aria-pressed="false"><b class="c">빕그레이</b> 350m 이내 · 3.8점 이상</button>
+    <span class="hint">눌러서 해당 등급 가게만 보기</span>
+  </div>
+</header>
+
+<div class="tools">
+  <div class="tabs" id="tabs" role="toolbar" aria-label="분류"></div>
+  <div class="subs" id="subs" role="toolbar" aria-label="세부 분류" hidden></div>
+  <div class="ctrl">
+    <input type="search" id="q" placeholder="식당 이름이나 메뉴 검색" aria-label="검색">
+    <select id="sort" aria-label="정렬">
+      <option value="score">건슐랭 점수순</option>
+      <option value="dist">가까운 순</option>
+    </select>
+    <label><input type="checkbox" id="near"> 도보 5분 이내</label>
+    <button type="button" class="wheel-btn" id="wheelBtn" aria-expanded="false" aria-controls="wheel">돌림판</button>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<section class="wheel" id="wheel" hidden aria-label="점심 돌림판">
+  <div class="wheel-stage"><canvas id="wc" width="920" height="920" aria-label="돌림판"></canvas><div class="pin" aria-hidden="true"></div></div>
+  <div class="wheel-side">
+    <div class="wcats" id="wcats" role="group" aria-label="돌림판에 넣을 분류"></div>
+    <div class="pool" id="wpool"></div>
+    <button type="button" class="spin" id="spin">돌리기</button>
+    <div class="pick idle" id="wpick" aria-live="polite">먹기 싫은 분류는 체크를 끄고 돌려보세요.</div>
+  </div>
+</section>
+<main id="out"></main>
+
+<section class="method" aria-labelledby="mh">
+  <h2 id="mh">점수는 이렇게 매겼어요</h2>
+  <ol>
+    <li><b>수집:</b> 카카오맵 별점과 평가 수, 구글 지도 별점과 리뷰 수, 다이닝코드 점수(100점제)를 가게마다 모았습니다. 지점이 여럿인 체인은 미림타워에서 가까운 해당 지점 기준입니다.</li>
+    <li><b>리뷰 수 보정:</b> 평가가 몇 개뿐인 별점은 그 플랫폼 평균 쪽으로 당겼습니다. 카카오 리뷰 2개짜리 5.0점이 리뷰 400개짜리 4.2점을 이기지 않게 하려는 것이에요.</li>
+    <li><b>플랫폼 편향 제거:</b> 카카오는 박하고 구글은 후한 편이라, 같은 4.0이라도 의미가 다릅니다. 플랫폼마다 이 목록 안의 평균과 표준편차로 표준점수를 냈습니다.</li>
+    <li><b>합산:</b> 리뷰가 많을수록 그 플랫폼 의견에 더 큰 무게를 줘서 평균을 냈고, 출처가 적은 가게는 중간값 쪽으로 조금 당겼습니다. 그 결과를 5점 만점 '건슐랭 점수'로 바꿨습니다.</li>
+    <li><b>카카오 별점을 막아둔 곳:</b> 리뷰는 수백 개 있는데 카카오 별점만 닫아둔 가게는 자신이 없어서 막아둔 것으로 보고 점수를 약 0.45점 깎았습니다.</li>
+    <li><b>거리:</b> 미림타워(테헤란로4길 14)에서 직선거리이고, 도보 시간은 실제 길이 직선의 1.3배라고 보고 분당 75m로 계산했습니다.</li>
+  </ol>
+  <p class="note" id="mnote"></p>
+  <p class="note">네이버 지도는 이번 수집 환경에서 열리지 않았고, 요즘 대부분 식당이 네이버 별점을 숨기고 있어 넣지 않았습니다. 카페·베이커리는 카카오 별점만, 편의점은 거리만 표시했습니다. 평점은 2026년 10월 15일 밤 기준입니다.</p>
+</section>
+</div>
+
+<script>
+const DATA = {"rows": [{"name": "국밥생각 강남역점", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "강남구 테헤란로4길 13", "km": 0.04, "kakao": {"r": 3.5, "n": 31}, "dc": {"s": 68, "r": 4.2, "n": 6}, "google": {"r": 4.9, "n": 18}, "kblock": false, "z": 0.339, "conf": 1.98, "score": 3.8, "walk": 1, "nsrc": 3, "stars": 1, "bib": true}, {"name": "담원순대 강남직영점", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "강남구 테헤란로4길 34", "km": 0.15, "kakao": {"r": 4.3, "n": 101}, "dc": {"s": 81, "r": 4.1, "n": 17}, "google": {"r": 4.5, "n": 42}, "kblock": false, "z": 1.088, "conf": 2.46, "score": 4.2, "walk": 3, "nsrc": 3, "stars": 3, "bib": true}, {"name": "순대생각 강남본점", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "서초구 서초대로74길 27", "km": 0.3, "kakao": {"r": 4.1, "n": 15}, "dc": null, "google": {"r": 3.8, "n": 120}, "kblock": false, "z": -0.312, "conf": 1.54, "score": 3.4, "walk": 5, "nsrc": 2, "stars": 0, "bib": false}, {"name": "국밥쟁이 강남역점", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "서초구 서초대로77길 9", "km": 0.33, "kakao": {"r": 1.5, "n": 2}, "dc": {"s": 53, "r": 4, "n": 1}, "google": {"r": 4.0, "n": 21}, "kblock": false, "z": -0.49, "conf": 1.02, "score": 3.3, "walk": 6, "nsrc": 3, "stars": 0, "bib": false}, {"name": "이여곰탕 역삼점", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "강남구 논현로85길 23", "km": 0.59, "kakao": {"r": 4.1, "n": 33}, "dc": {"s": 69, "r": 4.4, "n": 9}, "google": {"r": 4.3, "n": 196}, "kblock": false, "z": 0.435, "conf": 2.53, "score": 3.8, "walk": 10, "nsrc": 3, "stars": 2, "bib": false}, {"name": "전주콩나물국밥", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "강남구 테헤란로 124 삼원타워", "km": 0.24, "kakao": {"r": 3.5, "n": 2}, "dc": null, "google": {"r": 3.8, "n": 5}, "kblock": false, "z": -0.09, "conf": 0.45, "score": 3.6, "walk": 4, "nsrc": 2, "stars": 0, "bib": false}, {"name": "김명자굴국밥보쌈", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "서초구 서초대로78길 30", "km": 0.29, "kakao": {"r": 3.2, "n": 30}, "dc": {"s": 65, "r": 3.5, "n": 5}, "google": {"r": 4.3, "n": 100}, "kblock": false, "z": -0.071, "conf": 2.22, "score": 3.6, "walk": 5, "nsrc": 3, "stars": 0, "bib": false}, {"name": "울엄마추어탕", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "강남구 테헤란로 124 삼원타워", "km": 0.26, "kakao": {"r": 4.0, "n": 11}, "dc": {"s": 57, "r": 5, "n": 1}, "google": {"r": 4.4, "n": 27}, "kblock": false, "z": 0.198, "conf": 1.46, "score": 3.7, "walk": 5, "nsrc": 3, "stars": 1, "bib": false}, {"name": "담소소사골순대육개장 강남본점", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "강남구 강남대로78길 24", "km": 0.28, "kakao": {"r": 2.9, "n": 71}, "dc": null, "google": {"r": 3.9, "n": 720}, "kblock": false, "z": -0.864, "conf": 1.88, "score": 3.1, "walk": 5, "nsrc": 2, "stars": 0, "bib": false}, {"name": "순남시래기 강남역점", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "서초구 서초대로74길 23", "km": 0.3, "kakao": {"r": 2.9, "n": 54}, "dc": {"s": 64, "r": 3.3, "n": 7}, "google": {"r": 4.0, "n": 174}, "kblock": false, "z": -0.572, "conf": 2.51, "score": 3.3, "walk": 5, "nsrc": 3, "stars": 0, "bib": false}, {"name": "동명태", "cat": "한식", "sub": "국밥·탕", "note": "", "addr": "서초구 서초대로74길 29", "km": 0.33, "kakao": {"r": 1.7, "n": 6}, "dc": {"s": 48, "r": 2, "n": 1}, "google": {"r": 3.3, "n": 51}, "kblock": false, "z": -1.602, "conf": 1.44, "score": 2.7, "walk": 6, "nsrc": 3, "stars": 0, "bib": false}, {"name": "뉴욕김치찌개", "cat": "한식", "sub": "찌개·전골", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.06, "kakao": {"r": 4.0, "n": 34}, "dc": {"s": 59, "r": 5, "n": 2}, "google": {"r": 4.0, "n": 60}, "kblock": false, "z": -0.042, "conf": 1.93, "score": 3.6, "walk": 1, "nsrc": 3, "stars": 0, "bib": false}, {"name": "장금수부대찌개 역삼점", "cat": "한식", "sub": "찌개·전골", "note": "", "addr": "강남구 테헤란로 124 삼원타워", "km": 0.24, "kakao": {"r": 3.4, "n": 8}, "dc": {"s": 40, "r": 4, "n": 1}, "google": {"r": 4.1, "n": 16}, "kblock": false, "z": -0.497, "conf": 1.26, "score": 3.3, "walk": 4, "nsrc": 3, "stars": 0, "bib": false}, {"name": "이태리부대찌개 역삼점", "cat": "한식", "sub": "찌개·전골", "note": "", "addr": "강남구 논현로87길 23", "km": 0.52, "kakao": {"r": 3.4, "n": 15}, "dc": null, "google": null, "kblock": false, "z": -0.138, "conf": 0.65, "score": 3.5, "walk": 9, "nsrc": 1, "stars": 0, "bib": false}, {"name": "돌깨마을 맷돌순두부 강남역점", "cat": "한식", "sub": "찌개·전골", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": null, "dc": null, "google": {"r": 3.8, "n": 150}, "kblock": true, "z": -1.624, "conf": 0.91, "score": 2.7, "walk": 1, "nsrc": 1, "stars": 0, "bib": false}, {"name": "1992 덮밥&짜글이 강남본점", "cat": "한식", "sub": "찌개·전골", "note": "", "addr": "강남구 강남대로84길 6", "km": 0.11, "kakao": null, "dc": {"s": 78, "r": 4.2, "n": 27}, "google": {"r": 4.8, "n": 777}, "kblock": true, "z": 0.633, "conf": 1.78, "score": 3.9, "walk": 2, "nsrc": 2, "stars": 2, "bib": true}, {"name": "떡도리탕 강남본점", "cat": "한식", "sub": "찌개·전골", "note": "닭볶음탕", "addr": "강남구 테헤란로1길 28-9", "km": 0.38, "kakao": {"r": 3.6, "n": 306}, "dc": {"s": 84, "r": 4.4, "n": 105}, "google": {"r": 4.2, "n": 398}, "kblock": false, "z": 0.536, "conf": 2.74, "score": 3.9, "walk": 7, "nsrc": 3, "stars": 2, "bib": false}, {"name": "153구포국수 강남역점", "cat": "한식", "sub": "면·국수", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 2.6, "n": 56}, "dc": {"s": 76, "r": 4, "n": 17}, "google": null, "kblock": false, "z": -0.275, "conf": 1.68, "score": 3.4, "walk": 1, "nsrc": 2, "stars": 0, "bib": false}, {"name": "강남막국수&보쌈", "cat": "한식", "sub": "면·국수", "note": "", "addr": "강남구 테헤란로4길 13", "km": 0.05, "kakao": {"r": 4.2, "n": 20}, "dc": null, "google": {"r": 4.2, "n": 77}, "kblock": false, "z": 0.346, "conf": 1.55, "score": 3.8, "walk": 1, "nsrc": 2, "stars": 1, "bib": true}, {"name": "한율막국수", "cat": "한식", "sub": "면·국수", "note": "", "addr": "강남구 테헤란로4길 46", "km": 0.21, "kakao": {"r": 4.7, "n": 51}, "dc": {"s": 67, "r": 3.9, "n": 3}, "google": {"r": 4.1, "n": 9}, "kblock": false, "z": 0.798, "conf": 1.64, "score": 4.0, "walk": 4, "nsrc": 3, "stars": 3, "bib": true}, {"name": "창대조개칼국수", "cat": "한식", "sub": "면·국수", "note": "", "addr": "서초구 서초대로78길 36", "km": 0.32, "kakao": null, "dc": {"s": 66, "r": 4.3, "n": 4}, "google": {"r": 3.8, "n": 32}, "kblock": false, "z": -0.385, "conf": 1.16, "score": 3.4, "walk": 6, "nsrc": 2, "stars": 0, "bib": false}, {"name": "연희동칼국수 강남역점", "cat": "한식", "sub": "면·국수", "note": "", "addr": "서초구 서초대로 411", "km": 0.34, "kakao": {"r": 3.2, "n": 21}, "dc": null, "google": {"r": 4.0, "n": 132}, "kblock": false, "z": -0.429, "conf": 1.62, "score": 3.4, "walk": 6, "nsrc": 2, "stars": 0, "bib": false}, {"name": "무아국수", "cat": "한식", "sub": "면·국수", "note": "", "addr": "서초구 강남대로55길 9-15", "km": 0.33, "kakao": {"r": 4.0, "n": 30}, "dc": {"s": 67, "r": 3.9, "n": 6}, "google": {"r": 3.8, "n": 208}, "kblock": false, "z": -0.207, "conf": 2.36, "score": 3.5, "walk": 6, "nsrc": 3, "stars": 0, "bib": false}, {"name": "소울제면식당", "cat": "한식", "sub": "면·국수", "note": "", "addr": "", "km": 0.55, "kakao": null, "dc": {"s": 62, "r": 5, "n": 1}, "google": null, "kblock": false, "z": -0.169, "conf": 0.24, "score": 3.5, "walk": 10, "nsrc": 1, "stars": 0, "bib": false}, {"name": "보영만두 강남점", "cat": "분식", "sub": "만두", "note": "", "addr": "강남구 테헤란로5길 24", "km": 0.31, "kakao": {"r": 4.4, "n": 54}, "dc": {"s": 76, "r": 4.5, "n": 12}, "google": {"r": 4.2, "n": 25}, "kblock": false, "z": 0.782, "conf": 2.3, "score": 4.0, "walk": 5, "nsrc": 3, "stars": 3, "bib": true}, {"name": "강남힘찬장어", "cat": "한식", "sub": "고기", "note": "", "addr": "강남구 강남대로84길 15", "km": 0.04, "kakao": {"r": 5.0, "n": 2}, "dc": null, "google": {"r": 5.0, "n": 3}, "kblock": false, "z": 0.257, "conf": 0.37, "score": 3.7, "walk": 1, "nsrc": 2, "stars": 1, "bib": false}, {"name": "미역향 삼겹장 강남역삼본점", "cat": "한식", "sub": "고기", "note": "", "addr": "강남구 테헤란로10길 18", "km": 0.24, "kakao": {"r": 4.7, "n": 9}, "dc": {"s": 64, "r": 4, "n": 1}, "google": {"r": 3.6, "n": 30}, "kblock": false, "z": -0.181, "conf": 1.44, "score": 3.5, "walk": 4, "nsrc": 3, "stars": 0, "bib": false}, {"name": "안녕숯불 강남점", "cat": "한식", "sub": "고기", "note": "", "addr": "강남구 테헤란로4길 31", "km": 0.13, "kakao": {"r": 4.0, "n": 30}, "dc": null, "google": {"r": 4.0, "n": 18}, "kblock": false, "z": 0.197, "conf": 1.33, "score": 3.7, "walk": 2, "nsrc": 2, "stars": 1, "bib": false}, {"name": "두배고기", "cat": "한식", "sub": "고기", "note": "", "addr": "강남구 테헤란로6길 42", "km": 0.23, "kakao": {"r": 4.2, "n": 35}, "dc": {"s": 70, "r": 4.5, "n": 8}, "google": {"r": 4.4, "n": 100}, "kblock": false, "z": 0.598, "conf": 2.48, "score": 3.9, "walk": 4, "nsrc": 3, "stars": 2, "bib": true}, {"name": "진대감 강남역삼성타운점", "cat": "한식", "sub": "고기", "note": "", "addr": "서초구 서초대로78길 50", "km": 0.44, "kakao": {"r": 4.2, "n": 48}, "dc": {"s": 62, "r": 4.2, "n": 7}, "google": {"r": 4.1, "n": 317}, "kblock": false, "z": 0.107, "conf": 2.53, "score": 3.7, "walk": 8, "nsrc": 3, "stars": 1, "bib": false}, {"name": "솔직한우 역삼점", "cat": "한식", "sub": "고기", "note": "", "addr": "강남구 테헤란로 205", "km": 0.91, "kakao": {"r": 4.2, "n": 33}, "dc": {"s": 64, "r": 3.3, "n": 4}, "google": {"r": 4.9, "n": 169}, "kblock": false, "z": 1.074, "conf": 2.2, "score": 4.2, "walk": 16, "nsrc": 3, "stars": 3, "bib": false}, {"name": "고끌림 역삼점", "cat": "한식", "sub": "고기", "note": "", "addr": "강남구 테헤란로14길 25", "km": 0.37, "kakao": {"r": 4.7, "n": 19}, "dc": {"s": 63, "r": 5, "n": 1}, "google": {"r": 4.8, "n": 5}, "kblock": false, "z": 0.711, "conf": 1.19, "score": 4.0, "walk": 6, "nsrc": 3, "stars": 2, "bib": false}, {"name": "나주가", "cat": "한식", "sub": "고기", "note": "곱창·막창", "addr": "강남구 강남대로84길 36", "km": 0.16, "kakao": {"r": 1.5, "n": 31}, "dc": {"s": 59, "r": 3.8, "n": 3}, "google": {"r": 3.7, "n": 157}, "kblock": false, "z": -1.676, "conf": 2.11, "score": 2.7, "walk": 3, "nsrc": 3, "stars": 0, "bib": false}, {"name": "우대한식당", "cat": "한식", "sub": "고기", "note": "", "addr": "강남구 논현로79길 53", "km": 0.46, "kakao": {"r": 5.0, "n": 8}, "dc": {"s": 60, "r": 5, "n": 2}, "google": null, "kblock": false, "z": 0.381, "conf": 0.82, "score": 3.8, "walk": 8, "nsrc": 2, "stars": 1, "bib": false}, {"name": "바우골참숯화로구이", "cat": "한식", "sub": "고기", "note": "", "addr": "강남구 강남대로92길 29", "km": 0.23, "kakao": {"r": 3.3, "n": 25}, "dc": {"s": 60, "r": 3.5, "n": 3}, "google": {"r": 4.1, "n": 145}, "kblock": false, "z": -0.319, "conf": 2.06, "score": 3.4, "walk": 4, "nsrc": 3, "stars": 0, "bib": false}, {"name": "싸다김밥 강남역점", "cat": "분식", "sub": "김밥", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 2.5, "n": 32}, "dc": {"s": 52, "r": 3.2, "n": 4}, "google": {"r": 3.9, "n": 22}, "kblock": false, "z": -1.047, "conf": 1.87, "score": 3.0, "walk": 1, "nsrc": 3, "stars": 0, "bib": false}, {"name": "김가네 강남역점", "cat": "분식", "sub": "김밥", "note": "", "addr": "강남구 강남대로94길 27", "km": 0.28, "kakao": {"r": 2.6, "n": 30}, "dc": null, "google": {"r": 3.7, "n": 52}, "kblock": false, "z": -1.095, "conf": 1.57, "score": 3.0, "walk": 5, "nsrc": 2, "stars": 0, "bib": false}, {"name": "종로김밥 역삼역점", "cat": "분식", "sub": "김밥", "note": "", "addr": "강남구 테헤란로20길 19", "km": 0.5, "kakao": {"r": 4.0, "n": 11}, "dc": null, "google": null, "kblock": false, "z": 0.276, "conf": 0.58, "score": 3.8, "walk": 9, "nsrc": 1, "stars": 0, "bib": false}, {"name": "로봇김밥 신분당선강남역점", "cat": "분식", "sub": "김밥", "note": "", "addr": "강남역 신분당선 지하", "km": 0.15, "kakao": {"r": 1.8, "n": 48}, "dc": {"s": 73, "r": 3.9, "n": 14}, "google": {"r": 3.5, "n": 22}, "kblock": false, "z": -1.024, "conf": 2.25, "score": 3.0, "walk": 3, "nsrc": 3, "stars": 0, "bib": false}, {"name": "리김밥 GFC점", "cat": "분식", "sub": "김밥", "note": "", "addr": "강남구 테헤란로 152 강남파이낸스센터", "km": 0.67, "kakao": {"r": 2.3, "n": 19}, "dc": {"s": 49, "r": 3, "n": 1}, "google": {"r": 3.0, "n": 6}, "kblock": false, "z": -1.215, "conf": 1.23, "score": 2.9, "walk": 12, "nsrc": 3, "stars": 0, "bib": false}, {"name": "반장즉석떡볶이 강남점", "cat": "분식", "sub": "떡볶이", "note": "", "addr": "강남구 테헤란로4길 25", "km": 0.09, "kakao": {"r": 3.3, "n": 43}, "dc": {"s": 80, "r": 4.6, "n": 12}, "google": {"r": 3.9, "n": 226}, "kblock": false, "z": -0.004, "conf": 2.58, "score": 3.6, "walk": 2, "nsrc": 3, "stars": 0, "bib": false}, {"name": "보슬보슬 역삼본점", "cat": "분식", "sub": "김밥", "note": "", "addr": "강남구 논현로85길 59", "km": 0.32, "kakao": null, "dc": {"s": 81, "r": 4, "n": 64}, "google": {"r": 4.1, "n": 474}, "kblock": true, "z": -0.318, "conf": 1.77, "score": 3.4, "walk": 6, "nsrc": 2, "stars": 2, "pick": true, "bib": false}, {"name": "본죽&비빔밥cafe 강남점", "cat": "한식", "sub": "죽", "note": "", "addr": "강남구 강남대로94길 21", "km": 0.27, "kakao": {"r": 3.3, "n": 31}, "dc": null, "google": null, "kblock": false, "z": -0.279, "conf": 0.79, "score": 3.4, "walk": 5, "nsrc": 1, "stars": 0, "bib": false}, {"name": "본죽&비빔밥cafe 강남역점", "cat": "한식", "sub": "죽", "note": "", "addr": "서초구 서초대로78길 36", "km": 0.32, "kakao": null, "dc": {"s": 51, "r": 3.2, "n": 3}, "google": null, "kblock": false, "z": -0.825, "conf": 0.4, "score": 3.1, "walk": 6, "nsrc": 1, "stars": 0, "bib": false}, {"name": "본죽&비빔밥cafe 역삼특허청점", "cat": "한식", "sub": "죽", "note": "", "addr": "강남구 테헤란로14길 8", "km": 0.32, "kakao": {"r": 4.1, "n": 14}, "dc": null, "google": null, "kblock": false, "z": 0.391, "conf": 0.64, "score": 3.8, "walk": 6, "nsrc": 1, "stars": 0, "bib": true}, {"name": "토담골", "cat": "한식", "sub": "백반·한정식", "note": "", "addr": "강남구 테헤란로4길 13", "km": 0.06, "kakao": {"r": 3.3, "n": 3}, "dc": {"s": 52, "r": 4, "n": 3}, "google": {"r": 4.3, "n": 31}, "kblock": false, "z": -0.256, "conf": 1.35, "score": 3.5, "walk": 1, "nsrc": 3, "stars": 0, "bib": false}, {"name": "청담소반", "cat": "한식", "sub": "백반·한정식", "note": "", "addr": "강남구 테헤란로 124 삼원타워", "km": 0.24, "kakao": {"r": 3.3, "n": 12}, "dc": null, "google": {"r": 5.0, "n": 1}, "kblock": false, "z": -0.166, "conf": 0.66, "score": 3.5, "walk": 4, "nsrc": 2, "stars": 0, "bib": false}, {"name": "청목", "cat": "한식", "sub": "백반·한정식", "note": "", "addr": "강남구 테헤란로 124 삼원타워", "km": 0.24, "kakao": {"r": 3.6, "n": 17}, "dc": {"s": 52, "r": 4.6, "n": 2}, "google": null, "kblock": false, "z": -0.338, "conf": 1.0, "score": 3.4, "walk": 4, "nsrc": 2, "stars": 0, "bib": false}, {"name": "오미라식당 강남점", "cat": "한식", "sub": "백반·한정식", "note": "한식뷔페", "addr": "강남구 테헤란로 124 삼원타워", "km": 0.23, "kakao": {"r": 4.1, "n": 39}, "dc": {"s": 70, "r": 3.7, "n": 3}, "google": {"r": 4.5, "n": 39}, "kblock": false, "z": 0.622, "conf": 1.95, "score": 3.9, "walk": 4, "nsrc": 3, "stars": 2, "bib": true}, {"name": "역삼쭈꾸미&낙지 역삼본점", "cat": "한식", "sub": "백반·한정식", "note": "", "addr": "강남구 논현로87길 41", "km": 0.4, "kakao": {"r": 2.6, "n": 5}, "dc": null, "google": {"r": 3.7, "n": 23}, "kblock": false, "z": -0.626, "conf": 0.99, "score": 3.3, "walk": 7, "nsrc": 2, "stars": 0, "bib": false}, {"name": "솔낭구", "cat": "한식", "sub": "백반·한정식", "note": "", "addr": "강남구 테헤란로14길 8", "km": 0.32, "kakao": {"r": 4.1, "n": 27}, "dc": {"s": 53, "r": 4, "n": 1}, "google": {"r": 4.3, "n": 21}, "kblock": false, "z": 0.209, "conf": 1.59, "score": 3.7, "walk": 6, "nsrc": 3, "stars": 1, "bib": false}, {"name": "군선생 강남점", "cat": "한식", "sub": "백반·한정식", "note": "생선구이", "addr": "서초구 강남대로55길 24", "km": 0.4, "kakao": {"r": 3.2, "n": 30}, "dc": {"s": 72, "r": 4.1, "n": 4}, "google": {"r": 4.3, "n": 170}, "kblock": false, "z": 0.087, "conf": 2.19, "score": 3.6, "walk": 7, "nsrc": 3, "stars": 0, "bib": false}, {"name": "더드림", "cat": "한식", "sub": "백반·한정식", "note": "", "addr": "강남구 역삼로1길 18", "km": 0.33, "kakao": {"r": 4.1, "n": 14}, "dc": {"s": 50, "r": 3, "n": 1}, "google": null, "kblock": false, "z": -0.014, "conf": 0.88, "score": 3.6, "walk": 6, "nsrc": 2, "stars": 0, "bib": false}, {"name": "범수산", "cat": "일식", "sub": "초밥·회", "note": "", "addr": "강남구 강남대로84길 15", "km": 0.04, "kakao": {"r": 3.9, "n": 36}, "dc": {"s": 74, "r": 4.6, "n": 8}, "google": {"r": 4.1, "n": 17}, "kblock": false, "z": 0.41, "conf": 2.15, "score": 3.8, "walk": 1, "nsrc": 3, "stars": 1, "bib": true}, {"name": "도툼횟집", "cat": "일식", "sub": "초밥·회", "note": "", "addr": "강남구 강남대로84길 15", "km": 0.04, "kakao": {"r": 4.0, "n": 62}, "dc": {"s": 77, "r": 4.4, "n": 12}, "google": {"r": 4.3, "n": 142}, "kblock": false, "z": 0.65, "conf": 2.59, "score": 4.0, "walk": 1, "nsrc": 3, "stars": 2, "bib": true}, {"name": "김남완초밥집", "cat": "일식", "sub": "초밥·회", "note": "", "addr": "강남구 테헤란로20길 19", "km": 0.48, "kakao": {"r": 3.0, "n": 29}, "dc": {"s": 69, "r": 3, "n": 7}, "google": {"r": 4.1, "n": 219}, "kblock": false, "z": -0.241, "conf": 2.44, "score": 3.5, "walk": 8, "nsrc": 3, "stars": 0, "bib": false}, {"name": "은행골 강남역점", "cat": "일식", "sub": "초밥·회", "note": "", "addr": "서초구 서초대로75길 34", "km": 0.53, "kakao": {"r": 3.8, "n": 216}, "dc": {"s": 78, "r": 4.2, "n": 47}, "google": {"r": 4.5, "n": 1179}, "kblock": false, "z": 0.805, "conf": 2.75, "score": 4.0, "walk": 9, "nsrc": 3, "stars": 3, "bib": false}, {"name": "역삼동참치", "cat": "일식", "sub": "초밥·회", "note": "", "addr": "강남구 테헤란로20길 13", "km": 0.47, "kakao": {"r": 4.1, "n": 73}, "dc": null, "google": {"r": 3.8, "n": 58}, "kblock": false, "z": 0.0, "conf": 1.7, "score": 3.6, "walk": 8, "nsrc": 2, "stars": 0, "bib": false}, {"name": "탄", "cat": "일식", "sub": "돈카츠", "note": "", "addr": "강남구 테헤란로20길 13", "km": 0.47, "kakao": {"r": 4.0, "n": 28}, "dc": null, "google": {"r": 4.1, "n": 50}, "kblock": false, "z": 0.178, "conf": 1.55, "score": 3.7, "walk": 8, "nsrc": 2, "stars": 1, "bib": false}, {"name": "봄카츠 강남본점", "cat": "일식", "sub": "돈카츠", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 4.4, "n": 18}, "dc": {"s": 69, "r": 4.4, "n": 3}, "google": {"r": 5.0, "n": 2}, "kblock": false, "z": 0.576, "conf": 1.21, "score": 3.9, "walk": 1, "nsrc": 3, "stars": 2, "bib": true}, {"name": "청담돈가스 강남직영점", "cat": "일식", "sub": "돈카츠", "note": "", "addr": "강남구 테헤란로4길 46", "km": 0.24, "kakao": {"r": 3.5, "n": 127}, "dc": null, "google": {"r": 4.1, "n": 274}, "kblock": false, "z": -0.158, "conf": 1.89, "score": 3.5, "walk": 4, "nsrc": 2, "stars": 0, "bib": false}, {"name": "왓쇼이켄", "cat": "일식", "sub": "라멘", "note": "", "addr": "강남구 테헤란로4길 46", "km": 0.25, "kakao": {"r": 4.2, "n": 418}, "dc": {"s": 78, "r": 4.1, "n": 20}, "google": {"r": 4.3, "n": 278}, "kblock": false, "z": 0.824, "conf": 2.73, "score": 4.1, "walk": 4, "nsrc": 3, "stars": 3, "bib": true}, {"name": "멘노아지", "cat": "일식", "sub": "라멘", "note": "", "addr": "강남구 강남대로94길 27", "km": 0.28, "kakao": {"r": 3.9, "n": 136}, "dc": {"s": 78, "r": 4.3, "n": 21}, "google": {"r": 4.4, "n": 83}, "kblock": false, "z": 0.722, "conf": 2.59, "score": 4.0, "walk": 5, "nsrc": 3, "stars": 2, "bib": true}, {"name": "우동명가 다카마쓰 강남본점", "cat": "일식", "sub": "우동", "note": "", "addr": "강남구 강남대로84길 15", "km": 0.04, "kakao": {"r": 4.5, "n": 16}, "dc": {"s": 71, "r": 4.1, "n": 4}, "google": {"r": 5.0, "n": 5}, "kblock": false, "z": 0.686, "conf": 1.4, "score": 4.0, "walk": 1, "nsrc": 3, "stars": 2, "bib": true}, {"name": "우동명가 기리야마본진", "cat": "일식", "sub": "우동", "note": "", "addr": "강남구 강남대로84길 23", "km": 0.07, "kakao": {"r": 3.8, "n": 191}, "dc": {"s": 78, "r": 4.3, "n": 34}, "google": {"r": 4.3, "n": 850}, "kblock": false, "z": 0.588, "conf": 2.74, "score": 3.9, "walk": 1, "nsrc": 3, "stars": 2, "bib": true}, {"name": "역전우동0410 강남역태극당점", "cat": "일식", "sub": "우동", "note": "", "addr": "강남구 테헤란로4길 46", "km": 0.26, "kakao": {"r": 3.1, "n": 49}, "dc": {"s": 57, "r": 3.9, "n": 10}, "google": {"r": 3.7, "n": 178}, "kblock": false, "z": -0.965, "conf": 2.58, "score": 3.1, "walk": 5, "nsrc": 3, "stars": 0, "bib": false}, {"name": "우쿠야 강남역삼점", "cat": "일식", "sub": "우동", "note": "우동·돈카츠", "addr": "강남구 테헤란로14길 33", "km": 0.39, "kakao": {"r": 3.5, "n": 15}, "dc": {"s": 66, "r": 3.9, "n": 3}, "google": {"r": 4.7, "n": 15}, "kblock": false, "z": 0.207, "conf": 1.55, "score": 3.7, "walk": 7, "nsrc": 3, "stars": 1, "bib": false}, {"name": "오니기리와이규동 강남역점", "cat": "일식", "sub": "덮밥·카레", "note": "", "addr": "서초구 강남대로 375", "km": 0.2, "kakao": null, "dc": {"s": 64, "r": 3.6, "n": 4}, "google": {"r": 3.3, "n": 23}, "kblock": true, "z": -1.617, "conf": 1.09, "score": 2.7, "walk": 3, "nsrc": 2, "stars": 0, "bib": false}, {"name": "하이도조 강남점", "cat": "일식", "sub": "덮밥·카레", "note": "", "addr": "강남구 테헤란로4길 33", "km": 0.14, "kakao": null, "dc": {"s": 71, "r": 4.4, "n": 4}, "google": {"r": 4.9, "n": 48}, "kblock": true, "z": 0.254, "conf": 1.24, "score": 3.7, "walk": 2, "nsrc": 2, "stars": 1, "bib": false}, {"name": "소노야 강남역점", "cat": "일식", "sub": "덮밥·카레", "note": "", "addr": "강남역 신분당선 지하1층", "km": 0.17, "kakao": {"r": 3.2, "n": 48}, "dc": {"s": 67, "r": 4.1, "n": 9}, "google": {"r": 3.9, "n": 99}, "kblock": false, "z": -0.401, "conf": 2.53, "score": 3.4, "walk": 3, "nsrc": 3, "stars": 0, "bib": false}, {"name": "야기카레", "cat": "일식", "sub": "덮밥·카레", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 4.1, "n": 45}, "dc": {"s": 52, "r": 5, "n": 1}, "google": {"r": 4.5, "n": 24}, "kblock": false, "z": 0.38, "conf": 1.7, "score": 3.8, "walk": 1, "nsrc": 3, "stars": 1, "bib": true}, {"name": "오므토토마토 강남본점", "cat": "일식", "sub": "덮밥·카레", "note": "", "addr": "강남구 테헤란로4길 29", "km": 0.12, "kakao": {"r": 3.1, "n": 31}, "dc": {"s": 65, "r": 3, "n": 5}, "google": {"r": 3.8, "n": 32}, "kblock": false, "z": -0.508, "conf": 2.04, "score": 3.3, "walk": 2, "nsrc": 3, "stars": 0, "bib": false}, {"name": "이태원천상 강남역점", "cat": "일식", "sub": "덮밥·카레", "note": "", "addr": "서초구 서초대로74길 23", "km": 0.29, "kakao": {"r": 3.1, "n": 9}, "dc": {"s": 54, "r": 2.5, "n": 4}, "google": {"r": 3.8, "n": 48}, "kblock": false, "z": -0.756, "conf": 1.77, "score": 3.2, "walk": 5, "nsrc": 3, "stars": 0, "bib": false}, {"name": "선향정샤브샤브 서초점", "cat": "일식", "sub": "샤브샤브", "note": "", "addr": "서초구 강남대로55길 24 2층", "km": 0.4, "kakao": {"r": 2.9, "n": 49}, "dc": {"s": 56, "r": 4.1, "n": 3}, "google": {"r": 4.1, "n": 185}, "kblock": false, "z": -0.63, "conf": 2.14, "score": 3.3, "walk": 7, "nsrc": 3, "stars": 0, "bib": false}, {"name": "국빈", "cat": "중식", "sub": "중화요리", "note": "", "addr": "강남구 테헤란로4길 27 2층", "km": 0.1, "kakao": null, "dc": {"s": 68, "r": 5, "n": 2}, "google": {"r": 5.0, "n": 1}, "kblock": false, "z": 0.103, "conf": 0.38, "score": 3.7, "walk": 2, "nsrc": 2, "stars": 0, "bib": false}, {"name": "아방궁", "cat": "중식", "sub": "중화요리", "note": "", "addr": "강남구 역삼로1길 18", "km": 0.33, "kakao": {"r": 4.0, "n": 133}, "dc": {"s": 75, "r": 4.1, "n": 12}, "google": {"r": 3.9, "n": 646}, "kblock": false, "z": 0.185, "conf": 2.72, "score": 3.7, "walk": 6, "nsrc": 3, "stars": 1, "bib": false}, {"name": "삼성각", "cat": "중식", "sub": "중화요리", "note": "", "addr": "서초구 서초대로78길 42", "km": 0.39, "kakao": {"r": 3.1, "n": 55}, "dc": {"s": 65, "r": 3.8, "n": 9}, "google": {"r": 3.8, "n": 583}, "kblock": false, "z": -0.669, "conf": 2.65, "score": 3.2, "walk": 7, "nsrc": 3, "stars": 0, "bib": false}, {"name": "호돌이반점", "cat": "중식", "sub": "중화요리", "note": "", "addr": "강남구 강남대로94길 91", "km": 0.6, "kakao": {"r": 3.6, "n": 45}, "dc": {"s": 71, "r": 3.8, "n": 8}, "google": {"r": 4.4, "n": 44}, "kblock": false, "z": 0.324, "conf": 2.39, "score": 3.8, "walk": 10, "nsrc": 3, "stars": 1, "bib": false}, {"name": "차이향", "cat": "중식", "sub": "중화요리", "note": "", "addr": "강남구 논현로94길 24", "km": 0.97, "kakao": {"r": 3.8, "n": 12}, "dc": {"s": 66, "r": 3.8, "n": 3}, "google": {"r": 4.0, "n": 87}, "kblock": false, "z": -0.13, "conf": 1.85, "score": 3.5, "walk": 17, "nsrc": 3, "stars": 0, "bib": false}, {"name": "선궁", "cat": "중식", "sub": "중화요리", "note": "", "addr": "강남구 테헤란로 124 삼원타워", "km": 0.24, "kakao": {"r": 4.1, "n": 11}, "dc": {"s": 63, "r": 3.8, "n": 2}, "google": null, "kblock": false, "z": 0.173, "conf": 0.9, "score": 3.7, "walk": 4, "nsrc": 2, "stars": 2, "pick": true, "bib": false}, {"name": "박사부's 역삼점", "cat": "중식", "sub": "중화요리", "note": "", "addr": "강남구 논현로85길 5-5", "km": 0.68, "kakao": {"r": 4.0, "n": 8}, "dc": null, "google": {"r": 4.2, "n": 53}, "kblock": false, "z": 0.156, "conf": 1.28, "score": 3.7, "walk": 12, "nsrc": 2, "stars": 1, "bib": false}, {"name": "탄탄면공방 강남점", "cat": "중식", "sub": "중화요리", "note": "", "addr": "강남구 테헤란로4길 40", "km": 0.18, "kakao": {"r": 4.1, "n": 87}, "dc": {"s": 76, "r": 4.6, "n": 12}, "google": {"r": 4.3, "n": 120}, "kblock": false, "z": 0.682, "conf": 2.6, "score": 4.0, "walk": 3, "nsrc": 3, "stars": 2, "bib": true}, {"name": "오한수우육면가 역삼점", "cat": "중식", "sub": "중화요리", "note": "", "addr": "강남구 테헤란로 124 삼원타워", "km": 0.22, "kakao": {"r": 4.2, "n": 10}, "dc": {"s": 59, "r": 3.4, "n": 2}, "google": null, "kblock": false, "z": 0.092, "conf": 0.88, "score": 3.7, "walk": 4, "nsrc": 2, "stars": 0, "bib": false}, {"name": "오한수우육면가 강남삼성타운점", "cat": "중식", "sub": "중화요리", "note": "", "addr": "서초구 서초대로74길 23", "km": 0.29, "kakao": {"r": 3.6, "n": 20}, "dc": {"s": 68, "r": 3.6, "n": 4}, "google": {"r": 3.8, "n": 25}, "kblock": false, "z": -0.169, "conf": 1.82, "score": 3.5, "walk": 5, "nsrc": 3, "stars": 0, "bib": false}, {"name": "하우마라탕", "cat": "중식", "sub": "마라탕", "note": "", "addr": "강남구 강남대로94길 23", "km": 0.27, "kakao": {"r": 3.3, "n": 70}, "dc": {"s": 76, "r": 4.2, "n": 17}, "google": {"r": 4.4, "n": 57}, "kblock": false, "z": 0.324, "conf": 2.49, "score": 3.8, "walk": 5, "nsrc": 3, "stars": 1, "bib": true}, {"name": "마유유 강남역점", "cat": "중식", "sub": "마라탕", "note": "", "addr": "강남구 강남대로94길 27", "km": 0.28, "kakao": {"r": 3.5, "n": 57}, "dc": {"s": 70, "r": 4.5, "n": 7}, "google": {"r": 4.4, "n": 29}, "kblock": false, "z": 0.206, "conf": 2.26, "score": 3.7, "walk": 5, "nsrc": 3, "stars": 1, "bib": false}, {"name": "정상마라 강남본점", "cat": "중식", "sub": "마라탕", "note": "", "addr": "서초구 사임당로 181", "km": 0.48, "kakao": {"r": 2.5, "n": 28}, "dc": {"s": 58, "r": 4.5, "n": 2}, "google": {"r": 4.8, "n": 5}, "kblock": false, "z": -0.79, "conf": 1.35, "score": 3.2, "walk": 8, "nsrc": 3, "stars": 0, "bib": false}, {"name": "중경마라탕 강남1호점", "cat": "중식", "sub": "마라탕", "note": "", "addr": "강남구 테헤란로1길 44", "km": 0.49, "kakao": {"r": 3.7, "n": 137}, "dc": {"s": 78, "r": 4.3, "n": 30}, "google": null, "kblock": false, "z": 0.582, "conf": 1.74, "score": 3.9, "walk": 8, "nsrc": 2, "stars": 2, "bib": false}, {"name": "마라공방 강남역점", "cat": "중식", "sub": "마라탕", "note": "", "addr": "강남구 강남대로84길 6", "km": 0.11, "kakao": {"r": 3.3, "n": 24}, "dc": {"s": 65, "r": 4.5, "n": 3}, "google": null, "kblock": false, "z": -0.224, "conf": 1.15, "score": 3.5, "walk": 2, "nsrc": 2, "stars": 0, "bib": false}, {"name": "무삥과팟타이 역삼점", "cat": "아시안", "sub": "태국·베트남", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 3.0, "n": 4}, "dc": {"s": 53, "r": 2, "n": 1}, "google": null, "kblock": false, "z": -0.482, "conf": 0.57, "score": 3.3, "walk": 1, "nsrc": 2, "stars": 0, "bib": false}, {"name": "벳남미식 본점", "cat": "아시안", "sub": "태국·베트남", "note": "", "addr": "강남구 논현로87길 25", "km": 0.5, "kakao": {"r": 3.3, "n": 8}, "dc": null, "google": null, "kblock": false, "z": -0.15, "conf": 0.5, "score": 3.5, "walk": 9, "nsrc": 1, "stars": 0, "bib": false}, {"name": "하노이스토리", "cat": "아시안", "sub": "태국·베트남", "note": "", "addr": "강남구 논현로85길 25", "km": 0.57, "kakao": {"r": 3.4, "n": 58}, "dc": {"s": 72, "r": 4.3, "n": 12}, "google": {"r": 4.2, "n": 174}, "kblock": false, "z": 0.109, "conf": 2.6, "score": 3.7, "walk": 10, "nsrc": 3, "stars": 1, "bib": false}, {"name": "쿠차라 삼성서초사옥점", "cat": "멕시칸", "sub": "멕시칸", "note": "", "addr": "서초구 서초대로74길 11", "km": 0.25, "kakao": {"r": 3.1, "n": 165}, "dc": {"s": 73, "r": 4, "n": 28}, "google": {"r": 4.3, "n": 756}, "kblock": false, "z": 0.06, "conf": 2.73, "score": 3.6, "walk": 4, "nsrc": 3, "stars": 0, "bib": false}, {"name": "더타코부스 강남역점", "cat": "멕시칸", "sub": "멕시칸", "note": "", "addr": "강남구 테헤란로4길 46", "km": 0.2, "kakao": null, "dc": {"s": 72, "r": 4, "n": 6}, "google": {"r": 5.0, "n": 43}, "kblock": true, "z": 0.323, "conf": 1.38, "score": 3.8, "walk": 3, "nsrc": 2, "stars": 1, "bib": true}, {"name": "낙원타코 강남역점", "cat": "멕시칸", "sub": "멕시칸", "note": "", "addr": "서초구 서초대로73길 7", "km": 0.4, "kakao": null, "dc": null, "google": {"r": 4.1, "n": 795}, "kblock": true, "z": -0.986, "conf": 0.98, "score": 3.1, "walk": 7, "nsrc": 1, "stars": 0, "bib": false}, {"name": "타코벨 역삼점", "cat": "멕시칸", "sub": "멕시칸", "note": "", "addr": "강남구 논현로85길 11", "km": 0.63, "kakao": {"r": 3.8, "n": 64}, "dc": {"s": 73, "r": 4.2, "n": 15}, "google": {"r": 3.9, "n": 390}, "kblock": false, "z": 0.015, "conf": 2.65, "score": 3.6, "walk": 11, "nsrc": 3, "stars": 0, "bib": false}, {"name": "마장버거 강남역점", "cat": "양식", "sub": "버거", "note": "", "addr": "강남구 강남대로84길 15", "km": 0.02, "kakao": null, "dc": null, "google": null, "kblock": true, "z": null, "conf": 0, "score": null, "walk": 1, "nsrc": 0, "stars": 0, "bib": false}, {"name": "왁버거 강남점", "cat": "양식", "sub": "버거", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 4.1, "n": 21}, "dc": {"s": 58, "r": 5, "n": 1}, "google": {"r": 3.1, "n": 8}, "kblock": false, "z": -0.073, "conf": 1.31, "score": 3.6, "walk": 1, "nsrc": 3, "stars": 0, "bib": false}, {"name": "크라이치즈버거 강남점", "cat": "양식", "sub": "버거", "note": "", "addr": "강남구 테헤란로8길 28", "km": 0.19, "kakao": {"r": 4.8, "n": 462}, "dc": {"s": 73, "r": 4.2, "n": 5}, "google": {"r": 4.9, "n": 380}, "kblock": false, "z": 1.729, "conf": 2.51, "score": 4.6, "walk": 3, "nsrc": 3, "stars": 3, "bib": true}, {"name": "바스버거 역삼점", "cat": "양식", "sub": "버거", "note": "", "addr": "강남구 테헤란로26길 10", "km": 0.6, "kakao": {"r": 3.9, "n": 100}, "dc": {"s": 77, "r": 4.4, "n": 28}, "google": {"r": 4.4, "n": 1219}, "kblock": false, "z": 0.72, "conf": 2.71, "score": 4.0, "walk": 10, "nsrc": 3, "stars": 2, "bib": false}, {"name": "데일리픽스", "cat": "양식", "sub": "버거", "note": "", "addr": "강남구 논현로85길 70", "km": 0.25, "kakao": {"r": 3.6, "n": 112}, "dc": {"s": 80, "r": 4.3, "n": 29}, "google": {"r": 4.8, "n": 674}, "kblock": false, "z": 1.071, "conf": 2.71, "score": 4.2, "walk": 4, "nsrc": 3, "stars": 3, "bib": true}, {"name": "맥도날드 강남2호점", "cat": "양식", "sub": "버거", "note": "", "addr": "강남구 테헤란로 107", "km": 0.17, "kakao": {"r": 2.7, "n": 144}, "dc": {"s": 61, "r": 3.9, "n": 32}, "google": {"r": 3.9, "n": 1514}, "kblock": false, "z": -0.923, "conf": 2.74, "score": 3.1, "walk": 3, "nsrc": 3, "stars": 0, "bib": false}, {"name": "버거킹 강남대로점", "cat": "양식", "sub": "버거", "note": "", "addr": "강남구 강남대로 406", "km": 0.25, "kakao": {"r": 2.7, "n": 108}, "dc": {"s": 59, "r": 3.8, "n": 16}, "google": {"r": 3.9, "n": 1066}, "kblock": false, "z": -0.966, "conf": 2.72, "score": 3.1, "walk": 4, "nsrc": 3, "stars": 0, "bib": false}, {"name": "맘스터치 강남역점", "cat": "양식", "sub": "버거", "note": "", "addr": "강남구 강남대로100길 10", "km": 0.54, "kakao": {"r": 2.5, "n": 60}, "dc": {"s": 57, "r": 4, "n": 8}, "google": {"r": 4.0, "n": 323}, "kblock": false, "z": -0.974, "conf": 2.64, "score": 3.1, "walk": 9, "nsrc": 3, "stars": 0, "bib": false}, {"name": "경양식당임정훈", "cat": "양식", "sub": "양식", "note": "", "addr": "강남구 강남대로84길 15", "km": 0.04, "kakao": {"r": 3.6, "n": 21}, "dc": {"s": 57, "r": 3.7, "n": 5}, "google": {"r": 4.5, "n": 36}, "kblock": false, "z": 0.018, "conf": 1.99, "score": 3.6, "walk": 1, "nsrc": 3, "stars": 0, "bib": false}, {"name": "헤비스테이크 강남역점", "cat": "양식", "sub": "양식", "note": "", "addr": "강남구 테헤란로4길 32", "km": 0.12, "kakao": {"r": 3.4, "n": 38}, "dc": {"s": 74, "r": 3.8, "n": 13}, "google": {"r": 4.7, "n": 789}, "kblock": false, "z": 0.736, "conf": 2.61, "score": 4.0, "walk": 2, "nsrc": 3, "stars": 2, "bib": true}, {"name": "에그드랍 강남본점", "cat": "양식", "sub": "샌드위치", "note": "", "addr": "서초구 강남대로55길 24", "km": 0.41, "kakao": {"r": 2.8, "n": 28}, "dc": null, "google": {"r": 4.3, "n": 312}, "kblock": false, "z": -0.237, "conf": 1.73, "score": 3.5, "walk": 7, "nsrc": 2, "stars": 0, "bib": false}, {"name": "써브웨이 강남역점", "cat": "양식", "sub": "샌드위치", "note": "", "addr": "강남구 강남대로96길 12", "km": 0.3, "kakao": {"r": 2.7, "n": 126}, "dc": {"s": 59, "r": 4.3, "n": 27}, "google": {"r": 4.0, "n": 350}, "kblock": false, "z": -0.86, "conf": 2.7, "score": 3.1, "walk": 5, "nsrc": 3, "stars": 0, "bib": false}, {"name": "써브웨이 역삼점", "cat": "양식", "sub": "샌드위치", "note": "", "addr": "강남구 테헤란로25길 20", "km": 0.7, "kakao": {"r": 3.9, "n": 94}, "dc": null, "google": {"r": 4.0, "n": 275}, "kblock": false, "z": -0.009, "conf": 1.87, "score": 3.6, "walk": 12, "nsrc": 2, "stars": 0, "bib": false}, {"name": "브릭샌드 강남역점", "cat": "양식", "sub": "샌드위치", "note": "", "addr": "강남역 신분당선 지하", "km": 0.15, "kakao": null, "dc": {"s": 74, "r": 4.4, "n": 11}, "google": {"r": 4.8, "n": 229}, "kblock": true, "z": 0.417, "conf": 1.74, "score": 3.8, "walk": 3, "nsrc": 2, "stars": 2, "bib": true}, {"name": "샐러디 강남점", "cat": "샐러드", "sub": "샐러드·포케", "note": "", "addr": "강남구 강남대로84길 23", "km": 0.07, "kakao": {"r": 2.3, "n": 15}, "dc": {"s": 58, "r": 4.3, "n": 12}, "google": null, "kblock": false, "z": -0.945, "conf": 1.45, "score": 3.1, "walk": 1, "nsrc": 2, "stars": 0, "bib": false}, {"name": "오샐러드 강남점", "cat": "샐러드", "sub": "샐러드·포케", "note": "", "addr": "강남구 강남대로84길 15", "km": 0.06, "kakao": {"r": 4.0, "n": 36}, "dc": {"s": 69, "r": 3.4, "n": 8}, "google": {"r": 4.1, "n": 12}, "kblock": false, "z": 0.308, "conf": 2.06, "score": 3.8, "walk": 1, "nsrc": 3, "stars": 1, "bib": true}, {"name": "오트보트", "cat": "샐러드", "sub": "샐러드·포케", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 4.8, "n": 44}, "dc": {"s": 66, "r": 5, "n": 3}, "google": {"r": 4.9, "n": 80}, "kblock": false, "z": 1.395, "conf": 2.09, "score": 4.4, "walk": 1, "nsrc": 3, "stars": 3, "bib": true}, {"name": "알라보 강남점", "cat": "샐러드", "sub": "샐러드·포케", "note": "", "addr": "강남구 테헤란로 129", "km": 0.37, "kakao": {"r": 3.8, "n": 126}, "dc": {"s": 75, "r": 3.9, "n": 23}, "google": {"r": 4.2, "n": 250}, "kblock": false, "z": 0.399, "conf": 2.68, "score": 3.8, "walk": 6, "nsrc": 3, "stars": 1, "bib": false}, {"name": "포몬스 역삼점", "cat": "샐러드", "sub": "샐러드·포케", "note": "베트남 쌀국수", "addr": "강남구 역삼로7길 8", "km": 0.44, "kakao": {"r": 4.2, "n": 12}, "dc": {"s": 65, "r": 4.2, "n": 5}, "google": {"r": 3.8, "n": 111}, "kblock": false, "z": -0.268, "conf": 2.04, "score": 3.5, "walk": 8, "nsrc": 3, "stars": 0, "bib": false}, {"name": "바디라이프쉐프", "cat": "샐러드", "sub": "샐러드·포케", "note": "건강 도시락", "addr": "강남구 논현로 508 GS강남타워 B1", "km": 0.85, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 15, "nsrc": 0, "stars": 0, "bib": false}, {"name": "동락커피점 EXP", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 5.0, "n": 5}, "dc": null, "google": null, "kblock": false, "z": 0.51, "conf": 0.38, "score": 3.9, "walk": 1, "nsrc": 1, "stars": 0, "bib": false}, {"name": "QDC커피", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 3.0, "n": 2}, "dc": null, "google": null, "kblock": false, "z": -0.077, "conf": 0.2, "score": 3.6, "walk": 1, "nsrc": 1, "stars": 0, "bib": false}, {"name": "텐퍼센트커피 강남역센트럴애비뉴점", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 3.2, "n": 14}, "dc": null, "google": null, "kblock": false, "z": -0.283, "conf": 0.64, "score": 3.4, "walk": 1, "nsrc": 1, "stars": 0, "bib": false}, {"name": "아리스타커피 강남점", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 3.7, "n": 3}, "dc": null, "google": null, "kblock": false, "z": 0.022, "conf": 0.27, "score": 3.6, "walk": 1, "nsrc": 1, "stars": 0, "bib": false}, {"name": "돌핀커피 강남역점", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로 101", "km": 0.2, "kakao": {"r": 4.0, "n": 2}, "dc": null, "google": null, "kblock": false, "z": 0.05, "conf": 0.2, "score": 3.6, "walk": 3, "nsrc": 1, "stars": 0, "bib": false}, {"name": "이디야커피 역삼플래티넘점", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로4길 46", "km": 0.25, "kakao": {"r": 4.2, "n": 24}, "dc": null, "google": null, "kblock": false, "z": 0.584, "conf": 0.75, "score": 3.9, "walk": 4, "nsrc": 1, "stars": 0, "bib": false}, {"name": "폴바셋 강남삼성타운점", "cat": "카페", "sub": "카페", "note": "", "addr": "서초구 서초대로78길 22", "km": 0.26, "kakao": {"r": 4.3, "n": 54}, "dc": null, "google": null, "kblock": false, "z": 0.829, "conf": 0.87, "score": 4.1, "walk": 5, "nsrc": 1, "stars": 0, "bib": false}, {"name": "공차 강남글라스점", "cat": "카페", "sub": "카페", "note": "위치 확인 필요", "addr": "", "km": null, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": null, "nsrc": 0, "stars": 0, "bib": false}, {"name": "아티제 삼성타운점", "cat": "카페", "sub": "카페", "note": "", "addr": "서초구 서초대로74길 11", "km": 0.25, "kakao": {"r": 3.4, "n": 38}, "dc": null, "google": null, "kblock": false, "z": -0.187, "conf": 0.83, "score": 3.5, "walk": 4, "nsrc": 1, "stars": 0, "bib": false}, {"name": "아티제 GFC점", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로 152", "km": 0.68, "kakao": {"r": 4.2, "n": 9}, "dc": null, "google": null, "kblock": false, "z": 0.358, "conf": 0.53, "score": 3.8, "walk": 12, "nsrc": 1, "stars": 0, "bib": false}, {"name": "메이크커피", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 강남대로94길 27", "km": 0.28, "kakao": {"r": 5.0, "n": 2}, "dc": null, "google": null, "kblock": false, "z": 0.178, "conf": 0.2, "score": 3.7, "walk": 5, "nsrc": 1, "stars": 0, "bib": false}, {"name": "카페이안", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로14길 28", "km": 0.35, "kakao": {"r": 5.0, "n": 3}, "dc": null, "google": null, "kblock": false, "z": 0.298, "conf": 0.27, "score": 3.8, "walk": 6, "nsrc": 1, "stars": 0, "bib": false}, {"name": "매머드익스프레스 역삼신일유토빌점", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 논현로87길 41", "km": 0.39, "kakao": {"r": 4.6, "n": 10}, "dc": null, "google": null, "kblock": false, "z": 0.631, "conf": 0.56, "score": 3.9, "walk": 7, "nsrc": 1, "stars": 0, "bib": false}, {"name": "매머드익스프레스 삼성타운점", "cat": "카페", "sub": "카페", "note": "", "addr": "서초구 서운로 138", "km": 0.43, "kakao": {"r": 2.7, "n": 3}, "dc": null, "google": null, "kblock": false, "z": -0.19, "conf": 0.27, "score": 3.5, "walk": 7, "nsrc": 1, "stars": 0, "bib": false}, {"name": "에슬로우커피 역삼1호점", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 논현로85길 52", "km": 0.4, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 7, "nsrc": 0, "stars": 0, "bib": false}, {"name": "에슬로우커피 강남역점", "cat": "카페", "sub": "카페", "note": "", "addr": "서초구 서초대로74길 23", "km": 0.3, "kakao": {"r": 4.0, "n": 23}, "dc": null, "google": null, "kblock": false, "z": 0.391, "conf": 0.74, "score": 3.8, "walk": 5, "nsrc": 1, "stars": 0, "bib": false}, {"name": "카페 리퍼크 메리츠타워", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 강남대로 382", "km": 0.1, "kakao": {"r": 3.8, "n": 35}, "dc": {"s": 75, "r": 3.8, "n": 15}, "google": null, "kblock": false, "z": 0.525, "conf": 1.61, "score": 3.9, "walk": 2, "nsrc": 2, "stars": 0, "bib": false}, {"name": "셀렉티드닉스", "cat": "카페", "sub": "카페", "note": "", "addr": "강남구 테헤란로4길 37", "km": 0.16, "kakao": {"r": 4.1, "n": 338}, "dc": {"s": 80, "r": 4.2, "n": 71}, "google": null, "kblock": false, "z": 0.997, "conf": 1.78, "score": 4.1, "walk": 3, "nsrc": 2, "stars": 0, "bib": false}, {"name": "멍키호두 강남점", "cat": "베이커리", "sub": "베이커리·디저트", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.05, "kakao": {"r": 4.9, "n": 12}, "dc": null, "google": null, "kblock": false, "z": 0.911, "conf": 0.6, "score": 4.1, "walk": 1, "nsrc": 1, "stars": 0, "bib": false}, {"name": "크리스피크림도넛 강남역점", "cat": "베이커리", "sub": "베이커리·디저트", "note": "", "addr": "강남구 강남대로 376", "km": 0.12, "kakao": {"r": 3.8, "n": 53}, "dc": null, "google": null, "kblock": false, "z": 0.257, "conf": 0.87, "score": 3.7, "walk": 2, "nsrc": 1, "stars": 0, "bib": false}, {"name": "파리바게뜨 신분당선강남역점", "cat": "베이커리", "sub": "베이커리·디저트", "note": "", "addr": "강남역 신분당선 지하", "km": 0.15, "kakao": {"r": 1.8, "n": 18}, "dc": null, "google": null, "kblock": false, "z": -1.494, "conf": 0.69, "score": 2.8, "walk": 3, "nsrc": 1, "stars": 0, "bib": false}, {"name": "뚜레쥬르 카페역삼점", "cat": "베이커리", "sub": "베이커리·디저트", "note": "", "addr": "강남구 테헤란로8길 21", "km": 0.21, "kakao": {"r": 3.5, "n": 30}, "dc": null, "google": null, "kblock": false, "z": -0.076, "conf": 0.79, "score": 3.6, "walk": 4, "nsrc": 1, "stars": 0, "bib": false}, {"name": "뚜레쥬르 역삼역점", "cat": "베이커리", "sub": "베이커리·디저트", "note": "", "addr": "강남구 테헤란로20길 9", "km": 0.48, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 8, "nsrc": 0, "stars": 0, "bib": false}, {"name": "던킨 원더스강남점", "cat": "베이커리", "sub": "베이커리·디저트", "note": "", "addr": "서초구 강남대로 373", "km": 0.2, "kakao": {"r": 3.7, "n": 116}, "dc": null, "google": null, "kblock": false, "z": 0.158, "conf": 0.94, "score": 3.7, "walk": 3, "nsrc": 1, "stars": 0, "bib": false}, {"name": "CU 강남푸르지오점", "cat": "편의점", "sub": "편의점", "note": "", "addr": "강남구 테헤란로4길 6", "km": 0.06, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 1, "nsrc": 0, "stars": 0, "bib": false}, {"name": "CU 뉴삼성전자본점", "cat": "편의점", "sub": "편의점", "note": "", "addr": "서초구 서초대로74길 11", "km": 0.25, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 4, "nsrc": 0, "stars": 0, "bib": false}, {"name": "CU 역삼강남점", "cat": "편의점", "sub": "편의점", "note": "", "addr": "강남구 강남대로94길 23", "km": 0.27, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 5, "nsrc": 0, "stars": 0, "bib": false}, {"name": "CU 서초삼성타운점", "cat": "편의점", "sub": "편의점", "note": "", "addr": "서초구 강남대로55길 24", "km": 0.41, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 7, "nsrc": 0, "stars": 0, "bib": false}, {"name": "CU 역삼카이로스점", "cat": "편의점", "sub": "편의점", "note": "", "addr": "강남구 강남대로66길 8", "km": 0.65, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 11, "nsrc": 0, "stars": 0, "bib": false}, {"name": "GS25 강남본점", "cat": "편의점", "sub": "편의점", "note": "", "addr": "강남구 테헤란로2길 8", "km": 0.09, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 2, "nsrc": 0, "stars": 0, "bib": false}, {"name": "GS25 S강남역1호점", "cat": "편의점", "sub": "편의점", "note": "", "addr": "강남역 지하", "km": 0.16, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 3, "nsrc": 0, "stars": 0, "bib": false}, {"name": "GS25 강남메크로점", "cat": "편의점", "sub": "편의점", "note": "위치 확인 필요", "addr": "", "km": null, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": null, "nsrc": 0, "stars": 0, "bib": false}, {"name": "미니스톱 삼성타운점", "cat": "편의점", "sub": "편의점", "note": "위치 확인 필요", "addr": "", "km": null, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": null, "nsrc": 0, "stars": 0, "bib": false}, {"name": "세븐일레븐 역삼은탑점", "cat": "편의점", "sub": "편의점", "note": "", "addr": "강남구 테헤란로14길 5", "km": 0.36, "kakao": null, "dc": null, "google": null, "kblock": false, "z": null, "conf": 0, "score": null, "walk": 6, "nsrc": 0, "stars": 0, "bib": false}], "meta": {"kakao_mean": 3.57, "google_mean": 4.2, "dc_mean": 66.1, "n_total": 150, "n_food": 116, "n_scored": 105}};
+const ORDER = ["전체","한식","분식","일식","중식","아시안","멕시칸","양식","샐러드","카페","베이커리","편의점"];
+const FOOD = new Set(["한식","분식","일식","중식","아시안","멕시칸","양식","샐러드"]);
+let state = {cat:"전체", sub:"전체", award:null, q:"", sort:"score", near:false};
+try{ const s = JSON.parse(localStorage.getItem("gunsh-state")||"null"); if(s) state = Object.assign(state, s, {q:"", award:null}); }catch(e){}
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const m = DATA.meta;
+$("facts").innerHTML = `<span>기준점 <b>미림타워</b> 테헤란로4길 14</span><span>수록 <b>${m.n_total}</b>곳</span><span>평균 별점 카카오 <b>${m.kakao_mean}</b> · 구글 <b>${m.google_mean}</b> · 다이닝코드 <b>${m.dc_mean}</b>점</span>`;
+$("mnote").textContent = `이 목록의 식당 평균은 카카오 ${m.kakao_mean}, 구글 ${m.google_mean}입니다. 그래서 카카오 4.0은 평균보다 꽤 높은 편이고, 구글 4.0은 평균 근처입니다.`;
+
+function tabs(){
+  const counts = {}; DATA.rows.forEach(r => counts[r.cat]=(counts[r.cat]||0)+1);
+  $("tabs").innerHTML = ORDER.filter(c => c==="전체"||counts[c]).map(c =>
+    `<button type="button" data-c="${c}" aria-pressed="${state.cat===c}">${c}${c==="전체"?"":` <span style="opacity:.6;font-weight:500">${counts[c]}</span>`}</button>`).join("");
+}
+function stars(score){
+  const pct = Math.max(0, Math.min(100, (score/5)*100));
+  return `<div class="stars5" aria-hidden="true">★★★★★<span style="width:${pct}%">★★★★★</span></div>`;
+}
+function srcLine(r){
+  const k = r.kakao ? `<span class="k"><i>카카오</i> ${r.kakao.r.toFixed(1)} (${r.kakao.n})</span>` : (r.kblock ? `<span class="k na"><i>카카오</i> 별점 막아둠 · 감점</span>` : FOOD.has(r.cat)||r.cat==="카페"||r.cat==="베이커리" ? `<span class="k na"><i>카카오</i> –</span>` : "");
+  const g = r.google ? `<span class="g"><i>구글</i> ${r.google.r.toFixed(1)} (${r.google.n.toLocaleString()})</span>` : (FOOD.has(r.cat) ? `<span class="g na"><i>구글</i> –</span>` : "");
+  const d = r.dc ? `<span class="d"><i>다이닝코드</i> ${r.dc.s}점${r.dc.n?` · ${r.dc.r.toFixed(1)} (${r.dc.n})`:""}</span>` : (FOOD.has(r.cat) ? `<span class="d na"><i>다이닝코드</i> –</span>` : "");
+  return k+g+d;
+}
+function row(r, i){
+  const q = encodeURIComponent(r.name.replace(/\s*\(.*\)/,"") + (r.addr? "" : " 강남"));
+  const badges = [];
+  if (r.stars) badges.push(`<span class="badge star" title="건슐랭 ${r.stars}스타">${"★".repeat(r.stars)}</span>`);
+  if (r.bib) badges.push(`<span class="badge bib">빕그레이</span>`);
+  if (r.pick) badges.push(`<span class="badge bib" title="점수와 별개로 직접 추천해서 등급을 올린 곳">그레이 추천</span>`);
+  if (r.note && /확인|추정/.test(r.note)) badges.push(`<span class="badge warn">${esc(r.note)}</span>`);
+  const subNote = r.note && !/확인|추정/.test(r.note) ? ` · ${esc(r.note)}` : "";
+  const side = r.score!=null
+    ? `<div class="score">${r.score.toFixed(1)}</div>${stars(r.score)}`
+    : `<div class="score none">${r.cat==="편의점"?"":"평점 부족"}</div>`;
+  const dist = r.km!=null ? `<div class="dist">${r.km<1?Math.round(r.km*1000)+"m":r.km.toFixed(2)+"km"} <small>· 도보 ${r.walk}분</small></div>` : `<div class="dist"><small>거리 미확인</small></div>`;
+  return `<li class="row">
+    <div class="rank">${String(i+1).padStart(2,"0")}</div>
+    <div class="main">
+      <div class="name">${esc(r.name)} <span class="sub">${state.award?esc(r.cat)+" · ":""}${esc(r.sub)}${subNote}</span> ${badges.join("")}</div>
+      <div class="src">${srcLine(r)}</div>
+      ${r.addr?`<div class="addr">${esc(r.addr)}</div>`:""}
+      <div class="links"><a href="https://map.kakao.com/?q=${q}" target="_blank" rel="noopener">카카오맵</a><a href="https://www.google.com/maps/search/${q}" target="_blank" rel="noopener">구글 지도</a><a href="https://map.naver.com/p/search/${q}" target="_blank" rel="noopener">네이버 지도</a></div>
+    </div>
+    <div class="side">${side}${dist}</div>
+  </li>`;
+}
+function sorted(list){
+  const byDist = (a,b) => (a.km??99)-(b.km??99);
+  if (state.sort==="dist") return list.sort(byDist);
+  return list.sort((a,b) => (b.z??-99)-(a.z??-99) || byDist(a,b));
+}
+function render(){
+  try{ localStorage.setItem("gunsh-state", JSON.stringify({cat:state.cat,sub:state.sub,sort:state.sort,near:state.near})); }catch(e){}
+  $("sort").value = state.sort; $("near").checked = state.near;
+  document.querySelectorAll("#tabs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.c===state.cat));
+  const subEl = $("subs");
+  if (state.cat==="전체") { subEl.hidden = true; state.sub = "전체"; }
+  else {
+    const sc = {}; DATA.rows.filter(r => r.cat===state.cat).forEach(r => sc[r.sub]=(sc[r.sub]||0)+1);
+    const keys = Object.keys(sc);
+    if (!keys.includes(state.sub)) state.sub = "전체";
+    subEl.hidden = keys.length < 2;
+    subEl.innerHTML = ["전체",...keys].map(k => `<button type="button" data-s="${esc(k)}" aria-pressed="${state.sub===k}">${esc(k)}${k==="전체"?"":` <span style="opacity:.6">${sc[k]}</span>`}</button>`).join("");
+  }
+  const q = state.q.trim().toLowerCase();
+  let rows = DATA.rows.filter(r =>
+    (!q || (r.name+" "+r.sub+" "+(r.note||"")+" "+r.cat).toLowerCase().includes(q)) &&
+    (!state.near || (r.walk!=null && r.walk<=5)) &&
+    (!state.award || (state.award==="bib" ? r.bib : r.stars===+state.award)));
+  document.querySelectorAll("#awards button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.a===state.award)));
+  const cats = state.cat==="전체" ? ORDER.slice(1) : [state.cat];
+  let html = "", total = 0;
+  const visible = [];
+  if (state.award) {
+    const list = sorted(rows.filter(r => cats.includes(r.cat) && (state.cat==="전체" || state.sub==="전체" || r.sub===state.sub)));
+    total = list.length;
+    const label = state.award==="bib" ? "빕그레이" : `건슐랭 <span style="color:var(--gold)">${"★".repeat(+state.award)}</span>`;
+    visible.push(...list);
+    if (list.length) html = `<section class="cat"><div class="cat-h"><h2>${label}</h2><span class="n">${list.length}곳</span></div><ol class="list">${list.map(row).join("")}</ol></section>`;
+  }
+  for (const c of (state.award ? [] : cats)){
+    const list = sorted(rows.filter(r => r.cat===c && (state.cat==="전체" || state.sub==="전체" || r.sub===state.sub)));
+    if (!list.length) continue;
+    total += list.length; visible.push(...list);
+    html += `<section class="cat"><div class="cat-h"><h2>${c}${state.cat!=="전체"&&state.sub!=="전체"?` · ${esc(state.sub)}`:""}</h2><span class="n">${list.length}곳</span></div><ol class="list">${list.map(row).join("")}</ol></section>`;
+  }
+  $("out").innerHTML = html || `<p class="empty">조건에 맞는 곳이 없어요. 검색어를 바꾸거나 '도보 5분 이내'를 꺼보세요.</p>`;
+  lastVisible = visible; lastBase = rows; if (!$("wheel").hidden && !spinning) drawWheel();
+  $("count").textContent = `${state.award?(state.award==="bib"?"빕그레이 ":"★".repeat(+state.award)+" "):""}${total}곳 표시`;
+}
+let lastVisible = [], lastBase = [], spinning = false, angle = 0, pool = [];
+const NOFOOD = new Set(["카페","베이커리","편의점"]);
+const WCATS = ORDER.slice(1);
+let wsel = new Set(WCATS.filter(c => !NOFOOD.has(c)));
+try{ const ws = JSON.parse(localStorage.getItem("gunsh-wcats")||"null"); if (Array.isArray(ws)) wsel = new Set(ws.filter(c => WCATS.includes(c))); }catch(e){}
+function wcatsUI(){
+  const allOn = WCATS.filter(c => !NOFOOD.has(c)).every(c => wsel.has(c));
+  $("wcats").innerHTML = `<label class="all"><input type="checkbox" id="wc-all" ${allOn?"checked":""}> 식당 전체</label>` +
+    WCATS.map(c => `<label><input type="checkbox" id="wc-${c}" data-wc="${c}" ${wsel.has(c)?"checked":""}> ${c}</label>`).join("");
+}
+function wheelPool(){
+  return lastBase.filter(r => wsel.has(r.cat));
+}
+function cssv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function drawWheel(){
+  pool = wheelPool();
+  const c = $("wc"), g = c.getContext("2d"), W = c.width, R = W/2 - 8, cx = W/2, cy = W/2;
+  g.clearRect(0,0,W,W);
+  $("wpool").textContent = pool.length ? `후보 ${pool.length}곳 · 스타·빕그레이, 도보 5분, 검색 필터도 함께 적용돼요` : "후보가 없어요. 분류를 켜거나 필터를 풀어보세요.";
+  $("spin").disabled = pool.length < 2 || spinning;
+  if (!pool.length) return;
+  const cols = [cssv("--cobalt"), cssv("--gold"), cssv("--ink"), cssv("--muted")];
+  const txt = [cssv("--sheet"), cssv("--ink"), cssv("--paper"), cssv("--sheet")];
+  const n = pool.length, step = Math.PI*2/n;
+  const fs = Math.max(11, Math.min(30, Math.floor(1100/n)));
+  for (let i=0;i<n;i++){
+    const a0 = angle + i*step, a1 = a0 + step, ci = (n%4===1 && i===n-1) ? 1 : i%4;
+    g.beginPath(); g.moveTo(cx,cy); g.arc(cx,cy,R,a0,a1); g.closePath();
+    g.fillStyle = cols[ci]; g.fill();
+    g.strokeStyle = cssv("--sheet"); g.lineWidth = n>60?1:2; g.stroke();
+    g.save(); g.translate(cx,cy); g.rotate(a0+step/2);
+    g.fillStyle = txt[ci]; g.font = `600 ${fs}px "IBM Plex Sans KR", system-ui, sans-serif`;
+    g.textAlign = "right"; g.textBaseline = "middle";
+    let label = pool[i].name; const maxW = R*0.62;
+    while (g.measureText(label).width > maxW && label.length > 2) label = label.slice(0,-1);
+    if (label !== pool[i].name) label = label.slice(0,-1) + "…";
+    g.fillText(label, R-16, 0); g.restore();
+  }
+  g.beginPath(); g.arc(cx,cy,R*0.17,0,Math.PI*2); g.fillStyle = cssv("--sheet"); g.fill();
+  g.strokeStyle = cssv("--line"); g.lineWidth = 3; g.stroke();
+  g.fillStyle = cssv("--ink"); g.font = `400 ${Math.round(R*0.09)}px "Black Han Sans", system-ui, sans-serif`; g.textAlign="center"; g.textBaseline="middle";
+  g.fillText("건슐랭", cx, cy);
+}
+function showPick(r){
+  const el = $("wpick"); el.classList.remove("idle");
+  const q = encodeURIComponent(r.name);
+  el.innerHTML = `<div class="pm">오늘의 점심</div><div class="pn">${esc(r.name)}</div>
+    <div class="pm">${esc(r.cat)} · ${esc(r.sub)}${r.stars?` · <span style="color:var(--gold)">${"★".repeat(r.stars)}</span>`:""}</div>
+    <div class="ps">${r.score!=null?`건슐랭 ${r.score.toFixed(1)}`:"평점 부족"}${r.km!=null?` · ${r.km<1?Math.round(r.km*1000)+"m":r.km.toFixed(2)+"km"} · 도보 ${r.walk}분`:""}</div>
+    <div class="links"><a href="https://map.kakao.com/?q=${q}" target="_blank" rel="noopener">카카오맵</a><a href="https://map.naver.com/p/search/${q}" target="_blank" rel="noopener">네이버 지도</a></div>`;
+}
+function spin(){
+  if (spinning || pool.length < 2) return;
+  const n = pool.length, step = Math.PI*2/n, k = Math.floor(Math.random()*n);
+  // 포인터는 오른쪽(0 rad). 칸 k의 가운데가 0에 오도록 회전
+  const jitter = (Math.random()-0.5)*step*0.6;
+  const target = -(k*step + step/2) + jitter;
+  const cur = ((angle % (Math.PI*2)) + Math.PI*2) % (Math.PI*2);
+  let delta = ((target - cur) % (Math.PI*2) + Math.PI*2) % (Math.PI*2);
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  delta += reduce ? 0 : Math.PI*2*6;
+  const start = angle, dur = reduce ? 1 : 4200, t0 = performance.now();
+  spinning = true; $("spin").disabled = true;
+  const el = $("wpick"); el.classList.add("idle"); el.textContent = "돌아가는 중…";
+  const frame = now => {
+    const t = Math.min(1, (now - t0)/dur), e = 1 - Math.pow(1-t, 4);
+    angle = start + delta*e; drawWheel();
+    if (t < 1) requestAnimationFrame(frame);
+    else { spinning = false; drawWheel(); showPick(pool[k]); }
+  };
+  requestAnimationFrame(frame);
+}
+$("wheelBtn").addEventListener("click", () => {
+  const w = $("wheel"); w.hidden = !w.hidden;
+  $("wheelBtn").setAttribute("aria-expanded", String(!w.hidden));
+  $("wheelBtn").textContent = w.hidden ? "돌림판" : "돌림판 닫기";
+  if (!w.hidden) { drawWheel(); w.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"nearest"}); }
+});
+$("spin").addEventListener("click", spin);
+$("wcats").addEventListener("change", e => {
+  const t = e.target;
+  if (t.id === "wc-all") { WCATS.filter(c => !NOFOOD.has(c)).forEach(c => t.checked ? wsel.add(c) : wsel.delete(c)); }
+  else if (t.dataset.wc) { t.checked ? wsel.add(t.dataset.wc) : wsel.delete(t.dataset.wc); }
+  try{ localStorage.setItem("gunsh-wcats", JSON.stringify([...wsel])); }catch(e){}
+  wcatsUI(); if (!spinning) drawWheel();
+});
+wcatsUI();
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { if(!$("wheel").hidden) drawWheel(); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if(!$("wheel").hidden) drawWheel(); });
+
+tabs();
+$("tabs").addEventListener("click", e => { const b = e.target.closest("button"); if(!b) return; state.cat=b.dataset.c; state.sub="전체"; render(); });
+$("awards").addEventListener("click", e => { const b = e.target.closest("button"); if(!b) return; state.award = state.award===b.dataset.a ? null : b.dataset.a; if(state.award){ state.cat="전체"; state.sub="전체"; } render(); if(state.award) $("out").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"start"}); });
+$("subs").addEventListener("click", e => { const b = e.target.closest("button"); if(!b) return; state.sub=b.dataset.s; render(); });
+$("q").addEventListener("input", e => { state.q=e.target.value; render(); });
+$("sort").addEventListener("change", e => { state.sort=e.target.value; render(); });
+$("near").addEventListener("change", e => { state.near=e.target.checked; render(); });
+render();
+</script>
+
+</body></html>
